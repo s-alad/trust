@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trust/services/auth.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+  final Function? toggle;
+  const SignIn({Key? key, this.toggle}) : super(key: key);
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -61,6 +62,16 @@ class _SignInState extends State<SignIn> {
               child: const Text('Proceed Without Account'),
               onPressed: () async {
                 signIn();
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              child: const Text('sign up'),
+              onPressed: () async {
+                widget.toggle!();
+                print("toggle");
               },
             ),
           ],
