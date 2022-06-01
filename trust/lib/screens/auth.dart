@@ -14,12 +14,12 @@ currentUser() which is a method to retrieve the currently logged in user, was re
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Trustee? _user(User user) {
+  Trustee? _user(User? user) {
     return user != null ? Trustee(uid: user.uid) : null;
   }
 
-  Stream<User> get user {
-    return _auth
+  Stream<Trustee?> get user {
+    return _auth.authStateChanges().map((User? user) => _user(user));
   }
 
   Future signInAnon() async {
