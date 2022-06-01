@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:trust/models/user.dart';
-import 'package:trust/screens/auth.dart';
+import 'package:trust/services/auth.dart';
 import 'package:trust/screens/wrapper.dart';
 
 void main() async {

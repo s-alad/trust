@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trust/screens/auth.dart';
+import 'package:trust/services/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
