@@ -9,9 +9,13 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final check = Provider.of<Trustee>(context);
+    final check = Provider.of<Trustee?>(context);
     print(check);
 
-    return Authenticate();
+    if (check == null) {
+      return Authenticate();
+    } else {
+      return Home();
+    }
   }
 }
