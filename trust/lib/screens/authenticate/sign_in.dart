@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: const EdgeInsets.all(20),
         child: ElevatedButton(
-          child: const Text('Sign In'),
+          child: const Text('Proceed Without Account'),
           onPressed: () async {
             signIn();
           },
