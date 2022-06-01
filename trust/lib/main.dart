@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:trust/screens/auth.dart';
 import 'package:trust/screens/wrapper.dart';
 
 void main() async {
@@ -14,10 +16,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: Root(),
+    return StreamProvider.value(
+      initialData: null,
+      value: AuthService().user,
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Root(),
+      ),
     );
   }
 }
