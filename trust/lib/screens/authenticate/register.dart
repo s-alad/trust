@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trust/services/auth.dart';
+import 'package:trust/common/check.dart';
 
 class Register extends StatefulWidget {
   final Function? toggle;
@@ -12,6 +13,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+
+  Check check = Check();
 
   String email = '';
   String password = '';
@@ -32,17 +35,14 @@ class _RegisterState extends State<Register> {
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (String? value) =>
-                        value!.isEmpty ? "enter an email" : null,
+                    validator: check.emailValidator(),
                     onChanged: (value) => {setState(() => email = value)},
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (String? value) => value!.length < 6
-                        ? "enter a password with at least 6 characters"
-                        : null,
+                    validator: check.passwordValidator(),
                     obscureText: true,
                     onChanged: (value) => {setState(() => password = value)},
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trust/common/check.dart';
 import 'package:trust/services/auth.dart';
 
 class SignIn extends StatefulWidget {
@@ -11,9 +12,13 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
+  Check check = Check();
 
   String email = '';
   String password = '';
+  String error = '';
 
   signIn() async {
     dynamic result = await _auth.signInAnon();
@@ -34,18 +39,21 @@ class _SignInState extends State<SignIn> {
         child: Column(
           children: <Widget>[
             Form(
+              key: _formKey,
               child: Column(
                 children: [
                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    validator: check.emailValidator(),
                     onChanged: (value) => {setState(() => email = value)},
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    validator: check.passwordValidator(),
                     obscureText: true,
                     onChanged: (value) => {setState(() => password = value)},
                   ),
@@ -53,7 +61,25 @@ class _SignInState extends State<SignIn> {
                     height: 20,
                   ),
                   ElevatedButton(
-                      onPressed: () => {print(email + " " + password)},
+                      onPressed: () async {
+                        print(email + " " + password);
+                        if (_formKey.currentState!.validate()) {
+                          print("valid" + " " + email + " " + password);
+                          dynamic result = await _auth
+                              .signInWithEmailAndPassword(email, password);
+                          if (result == null) {
+                            print('error');
+                            setState(() {
+                              error = "error signing up";
+                            });
+                          } else {
+                            print('sign in');
+                            print(result);
+                            print(result.uid);
+                          }
+                        } else
+                          print("not valid");
+                      },
                       child: const Text("sign in with email and password"))
                 ],
               ),
@@ -64,6 +90,7 @@ class _SignInState extends State<SignIn> {
                 signIn();
               },
             ),
+            Text(error),
             SizedBox(
               height: 20,
             ),
