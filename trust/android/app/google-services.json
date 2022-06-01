@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "129202987100",
+    "project_id": "trust-d6d99",
+    "storage_bucket": "trust-d6d99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129202987100:android:164f40a80343c8ac75c699",
+        "android_client_info": {
+          "package_name": "lol.salad.trust"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129202987100-oq1htvojres4vm010u229v5b234aag5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lol.salad.trust",
+            "certificate_hash": "76b246fa674aeeff56bd724763c6096effd423f8"
+          }
+        },
+        {
+          "client_id": "129202987100-rr0vmh2fcjb8d21k6dr6soq1inin1np1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYT5F6v70Unv7It6e4Gs5H2lsPjL0SBfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129202987100-rr0vmh2fcjb8d21k6dr6soq1inin1np1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
