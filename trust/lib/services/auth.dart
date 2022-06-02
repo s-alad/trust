@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trust/models/user.dart';
+import 'package:trust/services/database.dart';
 
 /* FirebaseUser has been changed to User
 
@@ -26,6 +27,7 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInAnonymously();
       User? user = result.user;
+      await DataBaseService(uid: user!.uid).initUserData();
       return _user(user!);
     } catch (e) {
       print(e.toString());
@@ -38,6 +40,7 @@ class AuthService {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+
       return _user(user);
     } catch (e) {
       print(e);
@@ -51,9 +54,12 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+      await DataBaseService(uid: user!.uid).initUserData();
+      print("user initiated done");
       return _user(user);
     } catch (e) {
       print('error');
+      print(e);
       return null;
     }
   }

@@ -70,4 +70,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //add multi dex 
     implementation 'com.android.support:multidex:1.0.3'
+    implementation "io.grpc:grpc-okhttp:1.32.2"
 }
