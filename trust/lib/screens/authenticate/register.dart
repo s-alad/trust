@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trust/common/constants.dart';
+import 'package:trust/common/loading.dart';
 import 'package:trust/services/auth.dart';
 import 'package:trust/common/check.dart';
 
@@ -16,6 +17,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   Check check = Check();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -56,6 +58,9 @@ class _RegisterState extends State<Register> {
                       onPressed: () async {
                         print(email + " " + password);
                         if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
                           print("valid" + " " + email + " " + password);
                           dynamic result = await _auth
                               .registerWithEmailAndPassword(email, password);
@@ -63,6 +68,7 @@ class _RegisterState extends State<Register> {
                             print('error');
                             setState(() {
                               error = "error signing up";
+                              loading = false;
                             });
                           } else {
                             print('sign in');
@@ -79,7 +85,10 @@ class _RegisterState extends State<Register> {
                   Text(
                     error,
                     style: TextStyle(color: Colors.red),
-                  )
+                  ),
+                  Container(
+                    child: loading ? Loading() : Container(),
+                  ),
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trust/common/check.dart';
+import 'package:trust/common/loading.dart';
 import 'package:trust/services/auth.dart';
 
 import '../../common/constants.dart';
@@ -17,6 +18,7 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
 
   Check check = Check();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -68,6 +70,9 @@ class _SignInState extends State<SignIn> {
                       onPressed: () async {
                         print(email + " " + password);
                         if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            loading = true;
+                          });
                           print("valid" + " " + email + " " + password);
                           dynamic result = await _auth
                               .signInWithEmailAndPassword(email, password);
@@ -75,6 +80,7 @@ class _SignInState extends State<SignIn> {
                             print('error');
                             setState(() {
                               error = "error signing up";
+                              loading = false;
                             });
                           } else {
                             print('sign in');
@@ -87,6 +93,9 @@ class _SignInState extends State<SignIn> {
                       child: const Text("sign in with email and password"))
                 ],
               ),
+            ),
+            Container(
+              child: loading ? Loading() : Container(),
             ),
             ElevatedButton(
               child: const Text('Proceed Without Account'),
