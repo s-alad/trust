@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trust/common/constants.dart';
 import 'package:trust/services/auth.dart';
 import 'package:trust/common/check.dart';
 
@@ -35,6 +36,7 @@ class _RegisterState extends State<Register> {
                     height: 20,
                   ),
                   TextFormField(
+                    decoration: oneInputDecoration("email"),
                     validator: check.emailValidator(),
                     onChanged: (value) => {setState(() => email = value)},
                   ),
@@ -42,6 +44,7 @@ class _RegisterState extends State<Register> {
                     height: 20,
                   ),
                   TextFormField(
+                    decoration: oneInputDecoration("password"),
                     validator: check.passwordValidator(),
                     obscureText: true,
                     onChanged: (value) => {setState(() => password = value)},

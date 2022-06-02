@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trust/common/check.dart';
 import 'package:trust/services/auth.dart';
 
+import '../../common/constants.dart';
+
 class SignIn extends StatefulWidget {
   final Function? toggle;
   const SignIn({Key? key, this.toggle}) : super(key: key);
@@ -46,6 +48,7 @@ class _SignInState extends State<SignIn> {
                     height: 20,
                   ),
                   TextFormField(
+                    decoration: oneInputDecoration("email"),
                     validator: check.emailValidator(),
                     onChanged: (value) => {setState(() => email = value)},
                   ),
@@ -53,6 +56,7 @@ class _SignInState extends State<SignIn> {
                     height: 20,
                   ),
                   TextFormField(
+                    decoration: oneInputDecoration("pasword"),
                     validator: check.passwordValidator(),
                     obscureText: true,
                     onChanged: (value) => {setState(() => password = value)},
