@@ -28,7 +28,7 @@ class AuthService {
       UserCredential result = await _auth.signInAnonymously();
       User? user = result.user;
       await DataBaseService(uid: user!.uid).initUserData();
-      return _user(user!);
+      return _user(user);
     } catch (e) {
       print(e.toString());
       return null;
