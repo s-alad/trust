@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:trust/models/user.dart';
+import 'package:trust/models/trustee.dart';
 import 'package:trust/services/database.dart';
 
 /* FirebaseUser has been changed to User
@@ -14,6 +14,12 @@ currentUser() which is a method to retrieve the currently logged in user, was re
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String getId() {
+    final User? user = _auth.currentUser;
+    return user!.uid;
+    // here you write the codes to input the data into firestore
+  }
 
   Trustee? _user(User? user) {
     return user != null ? Trustee(uid: user.uid) : null;

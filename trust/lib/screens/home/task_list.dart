@@ -12,12 +12,13 @@ class TaskList extends StatefulWidget {
 class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
-    final tasks = Provider.of<QuerySnapshot?>(context);
+    final tasks = Provider.of<DocumentSnapshot<Object?>?>(context);
+    print(tasks);
     print("================================");
-    for (var doc in tasks!.docs) {
-      print(doc.data());
-    }
-    print(tasks?.docs);
-    return Container();
+    print("inprint tasks data");
+    print(tasks?.data());
+    return Container(
+      child: Text(tasks?.get('tasks')[0] ?? ''),
+    );
   }
 }

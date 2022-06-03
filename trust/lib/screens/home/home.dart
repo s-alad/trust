@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot?>.value(
+    return StreamProvider<DocumentSnapshot<Object?>?>.value(
       initialData: null,
       value: DataBaseService().tasks,
       child: Scaffold(

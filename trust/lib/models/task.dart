@@ -1,5 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Task {
-  String name = '';
+  final String? name;
+  final String? text;
+
+  Task({this.name, this.text});
 }
