@@ -14,7 +14,10 @@ class DataBaseService {
     print(uid);
     return await populationCollection.doc(uid).set({
       "userid": uid,
-      "tasks": [Task(name: 'lol', text: 'xd').toJson()]
+      "tasks": [
+        Task(name: 'lol', text: 'xd').toJson(),
+        Task(name: 'deez', text: 'nuts').toJson()
+      ]
     });
   }
 
