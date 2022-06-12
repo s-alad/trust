@@ -5,4 +5,9 @@ class Task {
   final String? text;
 
   Task({this.name, this.text});
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'text': text,
+      };
 }

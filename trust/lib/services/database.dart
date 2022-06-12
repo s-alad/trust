@@ -14,15 +14,16 @@ class DataBaseService {
     print(uid);
     return await populationCollection.doc(uid).set({
       "userid": uid,
-      "tasks": ["hi"]
+      "tasks": [Task(name: 'lol', text: 'xd').toJson()]
     });
   }
 
+  //unused. just a base model for later
   List<Task> _tasksFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Task(
-        name: '',
-        text: '',
+        name: doc.get('name') ?? '',
+        text: doc.get('tasks') ?? [],
       );
     }).toList();
   }
